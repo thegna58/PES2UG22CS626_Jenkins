@@ -1,29 +1,29 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o test_program test.cpp'  // Corrected syntax
+                sh 'g++ -o test_program test.cpp'
                 echo 'Build Stage Successful'
             }
         }
 
         stage('Test') {
             steps {
-                sh './test_program'  // Run the compiled program
+                sh './test_program'
                 echo 'Test Stage Successful'
             }
         }
 
         stage('Deploy') {
-    steps {
-        echo 'Deploying the application...'
-        sh 'sudo cp test_program /usr/local/bin/'
-        echo 'Deployment Successful'
+            steps {
+                echo 'Deploying the application...'
+                sh 'mkdir -p $HOME/bin && cp test_program $HOME/bin/'
+                echo 'Deployment Successful'
+            }
+        }
     }
-}
-
 
     post {
         failure {
