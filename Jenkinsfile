@@ -17,13 +17,13 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-                sh 'cp test_program /usr/local/bin/' // Example deploy step
-                echo 'Deployment Successful'
-            }
-        }
+    steps {
+        echo 'Deploying the application...'
+        sh 'sudo cp test_program /usr/local/bin/'
+        echo 'Deployment Successful'
     }
+}
+
 
     post {
         failure {
